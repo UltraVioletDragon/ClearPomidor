@@ -1,0 +1,71 @@
+
+
+
+
+//ok
+//    QMediaPlayer *player = new QMediaPlayer;
+//    player->setMedia(QUrl(QFileInfo("qrc:/sound/miui.wav").filePath()));
+//    player->setVolume(50);
+//    player->play();
+
+
+//QSound::play("qrc:/sound/miui.wav"); // ok
+//QSound::play(":/sound/miui.wav"); // ok
+
+
+
+
+/*
+ *
+ */
+     void mousePressEvent(QMouseEvent *event) override;
+void FocusClock::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        if(event->x() >= buttonPlayBound.at(0) && event->x() <= buttonPlayBound.at(1)
+                && event->y() >= buttonPlayBound.at(2) && event->y() <= buttonPlayBound.at(3)) {
+            qDebug()<<"Press Play";
+
+            start();
+
+            return;
+        }
+
+        if(event->x() >= buttonStopBound.at(0) && event->x() <= buttonStopBound.at(1)
+                && event->y() >= buttonStopBound.at(2) && event->y() <= buttonStopBound.at(3)) {
+            qDebug()<<"Press Stop";
+
+            stop();
+            return;
+        }
+
+        qDebug()<<"Press Event x:" << event->x() << " y:" << event->y();
+    }
+}
+
+* - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * -
+
+const QPoint FocusClock::buttonPlay[4] = {
+    QPoint(100, 300),
+    QPoint(120, 310),
+    QPoint(100, 320),
+    QPoint(100, 300)
+};
+const QVector<int> FocusClock::buttonPlayBound = {100, 120, 300, 320};
+
+const QPoint FocusClock::buttonStop[5] = {
+    QPoint(150, 300),
+    QPoint(170, 300),
+    QPoint(170, 320),
+    QPoint(150, 320),
+    QPoint(150, 300)
+};
+const QVector<int> FocusClock::buttonStopBound = {150, 170, 300, 320};
+
+//    painter.setPen(QPen(colorGray, 1, Qt::SolidLine, Qt::SquareCap, Qt::BevelJoin));
+//    painter.drawPolyline(FocusClock::buttonPlay, 4);
+
+//    painter.setPen(QPen(colorGray, 1, Qt::SolidLine, Qt::SquareCap, Qt::BevelJoin));
+//    painter.drawPolyline(FocusClock::buttonStop, 5);
+
+* - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * -
